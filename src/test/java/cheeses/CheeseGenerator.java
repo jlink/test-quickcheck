@@ -7,7 +7,7 @@ import com.pholser.junit.quickcheck.random.SourceOfRandomness;
 public class CheeseGenerator extends Generator<Cheese> {
 
 	private static final String ALL_MY_CHARS = "abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	public static final int MAX_NAME_LENGTH = 50;
+	public static final int MAX_NAME_LENGTH = 100;
 
 	public CheeseGenerator(Class<Cheese> type) {
 		super(type);
@@ -22,7 +22,8 @@ public class CheeseGenerator extends Generator<Cheese> {
 
 	private String generateRandomName(SourceOfRandomness random) {
 		StringBuilder nameBuilder = new StringBuilder();
-		for (int i = 0; i < random.nextInt(2, MAX_NAME_LENGTH); i++) {
+		int nextStringLength = random.nextInt(1, MAX_NAME_LENGTH);
+		for (int i = 0; i < nextStringLength; i++) {
 			int randomIndex = random.nextInt(ALL_MY_CHARS.length());
 			nameBuilder.append(ALL_MY_CHARS.charAt(randomIndex));
 		}
