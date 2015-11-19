@@ -1,4 +1,4 @@
-package test1;
+package simple;
 
 import com.pholser.junit.quickcheck.ForAll;
 import org.junit.contrib.theories.Theories;
