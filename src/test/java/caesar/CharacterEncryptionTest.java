@@ -1,16 +1,14 @@
-
 package caesar;
 
 import static org.junit.Assert.*;
 
+import com.pholser.junit.quickcheck.ForAll;
+import com.pholser.junit.quickcheck.generator.InRange;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.contrib.theories.Theories;
 import org.junit.contrib.theories.Theory;
 import org.junit.runner.RunWith;
-
-import com.pholser.junit.quickcheck.ForAll;
-import com.pholser.junit.quickcheck.generator.InRange;
 
 @RunWith(Theories.class)
 public class CharacterEncryptionTest {
@@ -23,7 +21,7 @@ public class CharacterEncryptionTest {
 	}
 
 	@Theory
-	public void encryptWithKey0(@ForAll @InRange(min = "a", max = "z") char toEncrypt) {
+	public void encryptWithKey0(@ForAll @InRange(minChar = 'a', maxChar = 'z') char toEncrypt) {
 		// assumeTrue(toEncrypt >= 'a' && toEncrypt <= 'z');
 		assertEquals(toEncrypt, cipher.encryptChar(toEncrypt, 0));
 	}
@@ -42,8 +40,8 @@ public class CharacterEncryptionTest {
 
 	@Theory
 	public void encryptingAnyCharWithAnyKeyShouldAlwaysReturnAValidChar(
-			@ForAll @InRange(min = "a", max = "z") char toEncrypt,
-			@ForAll @InRange(min = "0", max = "" + CaesarCipher.LENGTH_OF_ALPHABET) int key) { //String.valueOf does not work in annotation
+			@ForAll @InRange(minChar = 'a', maxChar = 'z') char toEncrypt,
+			@ForAll @InRange(minInt = 0, maxInt = CaesarCipher.LENGTH_OF_ALPHABET) int key) {
 		char result = cipher.encryptChar(toEncrypt, key);
 		assertTrue(result >= 'a' && result <= 'z');
 	}
