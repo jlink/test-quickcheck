@@ -16,4 +16,9 @@ public class Cheese {
 	public int getPrice() {
 		return price;
 	}
+
+    @Override
+    public String toString() {
+        return "Cheese(" + name + ")";
+    }
 }
